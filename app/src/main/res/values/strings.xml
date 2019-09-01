@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AssignmentThree</string>
+    <string name="friendsr">Friendsr</string>
+    <string name="text">Click on an eligible single user to learn and see if you are compatible for a date!</string>
 </resources>

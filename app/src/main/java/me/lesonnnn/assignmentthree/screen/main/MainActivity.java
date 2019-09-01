@@ -1,7 +1,8 @@
-package me.lesonnnn.assignmentthree;
+package me.lesonnnn.assignmentthree.screen.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import me.lesonnnn.assignmentthree.R;
 
 public class MainActivity extends AppCompatActivity {
 
