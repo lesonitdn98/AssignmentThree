@@ -1,6 +1,9 @@
 package me.lesonnnn.assignmentthree.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private int mId;
     private int mImage;
     private String mName;
@@ -17,6 +20,48 @@ public class User {
 
     public int getImage() {
         return mImage;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public String getBirthday() {
+        return mBirthday;
+    }
+
+    public float getRating() {
+        return mRating;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mId);
+        parcel.writeInt(mImage);
+        parcel.writeString(mName);
+        parcel.writeString(mBirthday);
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    private User(Parcel in) {
+        mId = in.readInt();
+        mImage = in.readInt();
+        mName = in.readString();
+        mBirthday = in.readString();
     }
 
     public static class UserBuilder {
@@ -55,9 +100,7 @@ public class User {
         }
 
         public User build() {
-            User user =
-                    new User(this.mId, this.mImage, this.mName, this.mBirthday,
-                            this.mRating);
+            User user = new User(this.mId, this.mImage, this.mName, this.mBirthday, this.mRating);
             return user;
         }
     }

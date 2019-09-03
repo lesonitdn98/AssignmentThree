@@ -15,6 +15,8 @@ import me.lesonnnn.assignmentthree.screen.main.adapter.MainAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainAdapter.onClickContentViewItem {
 
+    private List<User> userList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onCli
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        List<User> userList = new ArrayList<>();
+        userList = new ArrayList<>();
 
         MainAdapter mainAdapter = new MainAdapter(addProfile(userList), this);
         mainAdapter.setClickContentViewItem(this);
@@ -209,6 +211,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onCli
     @Override
     public void onClick(int position) {
         Intent intent = new Intent(this, DetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("Info", userList.get(position));
+        intent.putExtra("Hang", bundle);
         startActivity(intent);
     }
 }
