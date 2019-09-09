@@ -18,6 +18,10 @@ public class User implements Parcelable {
         mRating = rating;
     }
 
+    public int getId() {
+        return mId;
+    }
+
     public int getImage() {
         return mImage;
     }

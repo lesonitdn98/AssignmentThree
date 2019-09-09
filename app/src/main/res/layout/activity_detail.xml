@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     >
 
+    <ImageView
+        android:id="@+id/imageDetail"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:contentDescription="@string/content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gai02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionBar"
+        tools:ignore="MissingConstraints"
+        />
+
     <LinearLayout
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/colorPrimary"
-        tools:ignore="MissingConstraints"
         android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
         >
 
         <ImageView
@@ -27,30 +39,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:textSize="22sp"
-            android:paddingLeft="15dp"
-            android:textColor="#FFFFFF"
             android:gravity="center_vertical"
-            android:textStyle="bold"
+            android:paddingLeft="15dp"
             android:text="@string/detailsactivity"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
             tools:ignore="RtlHardcoded,RtlSymmetry"
             />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageDetail"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:contentDescription="@string/content"
-        android:scaleType="fitCenter"
-        android:src="@drawable/gai02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/actionBar"
-        tools:ignore="MissingConstraints"
-        />
-
     <RatingBar
+        android:id="@+id/myRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="false"
