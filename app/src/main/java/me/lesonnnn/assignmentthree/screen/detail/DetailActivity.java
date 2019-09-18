@@ -18,6 +18,7 @@ import me.lesonnnn.assignmentthree.model.User;
 public class DetailActivity extends AppCompatActivity
         implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
 
+    public static final int RESULT_CODE = 123;
     private SharedPreferences.Editor mEditor;
     private User mUser;
 
@@ -74,5 +75,8 @@ public class DetailActivity extends AppCompatActivity
         Toast.makeText(this, "You rating " + v + " star", Toast.LENGTH_SHORT).show();
         mEditor.putFloat(mUser.getId() + "", v);
         mEditor.apply();
+        Intent intent = new Intent();
+        intent.putExtra("item", mUser.getId());
+        setResult(RESULT_CODE, intent);
     }
 }

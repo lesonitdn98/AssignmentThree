@@ -3,6 +3,7 @@ package me.lesonnnn.assignmentthree.screen.main;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +15,9 @@ import me.lesonnnn.assignmentthree.screen.detail.DetailActivity;
 import me.lesonnnn.assignmentthree.screen.main.adapter.MainAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainAdapter.onClickContentViewItem {
-
+    private static final int REQUEST_CODE = 111;
     private List<User> userList;
+    private MainAdapter mainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onCli
 
         userList = new ArrayList<>();
 
-        MainAdapter mainAdapter = new MainAdapter(addProfile(userList), this);
+        mainAdapter = new MainAdapter(addProfile(userList), this);
         mainAdapter.setClickContentViewItem(this);
         recyclerView.setAdapter(mainAdapter);
     }
@@ -214,6 +216,15 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onCli
         Bundle bundle = new Bundle();
         bundle.putParcelable("Info", userList.get(position));
         intent.putExtra("Hang", bundle);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQUEST_CODE && resultCode==DetailActivity.RESULT_CODE){
+            assert data != null;
+            mainAdapter.notifyItemChanged(data.getIntExtra("item", 0));
+        }
     }
 }
